@@ -408,13 +408,6 @@ public class Demo {
         for (int i : array) {
             arrayList.add(i);
         }
-        System.out.print(arrayList.toString());
-
-        ArrayList<Integer> arrayList1 = new ArrayList<>();
-        for (int i : array) {
-            arrayList1.add(i);
-        }
-        System.out.print(arrayList1.toString()); // = arrayList.toString()
-
+        System.out.println(arrayList.toString());
     }
 }
