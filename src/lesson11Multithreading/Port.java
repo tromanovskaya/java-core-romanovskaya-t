@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-import static utils.FileUtils.rnd;
+import static utils.RandomUtils.RANDOM;
 
 public class Port {
 
@@ -61,11 +61,11 @@ public class Port {
         for (int i = 0; i < numberOfShips; i++) {
             Cargo cargo = null;
             if (i % 2 == 0) {
-                cargo = new Cargo(i, "bananas", rnd.nextInt(10000));
+                cargo = new Cargo(i, "bananas", RANDOM.nextInt(10000));
             } else if (i % 3 == 0) {
-                cargo = new Cargo(i, "oranges", rnd.nextInt(1000));
+                cargo = new Cargo(i, "oranges", RANDOM.nextInt(1000));
             } else {
-                cargo = new Cargo(i, "watermelons", rnd.nextInt(100));
+                cargo = new Cargo(i, "watermelons", RANDOM.nextInt(100));
             }
             ShipTransfer shipTransfer = new ShipTransfer(i, cargo, countDownLatch, queueShip, queueBerth);
             Future<Cargo> future = service.submit(shipTransfer);

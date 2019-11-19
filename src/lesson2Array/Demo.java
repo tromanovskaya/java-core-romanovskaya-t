@@ -2,6 +2,8 @@ package lesson2Array;
 
 import utils.ArrayUtils;
 import utils.RandomUtils;
+import static utils.RandomUtils.RANDOM;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -371,26 +373,12 @@ public class Demo {
     private static void runTask19() {
         System.out.println("\nTask 19. Write a Java program to add two matrices of the same size.");
         int size = 4;
-        int[][] matrixFirst = new int[size][size];
-        int[][] matrixSecond = new int[size][size];
-        int[][] matrixSum = new int[size][size];
-        int value = 1120;
         System.out.println("matrixFirst");
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matrixFirst[i][j] = value++;
-                System.out.print(matrixFirst[i][j] + " ");
-            }
-            System.out.println("");
-        }
+        int[][] matrixFirst = generateMatrixWithRandomValues(size);
         System.out.println("matrixSecond");
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matrixSecond[i][j] = value++;
-                System.out.print(matrixSecond[i][j] + " ");
-            }
-            System.out.println("");
-        }
+        int[][] matrixSecond = generateMatrixWithRandomValues(size);
+        int[][] matrixSum = new int[size][size];
+
         System.out.println("matrixSum");
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -399,6 +387,18 @@ public class Demo {
             }
             System.out.println("");
         }
+    }
+
+    private static int[][] generateMatrixWithRandomValues(int size) {
+        int[][] matrixFirst = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrixFirst[i][j] = RANDOM.nextInt(1000)+1000;
+                System.out.print(matrixFirst[i][j] + " ");
+            }
+            System.out.println("");
+        }
+        return matrixFirst;
     }
 
     private static void runTask20(int[] array) {

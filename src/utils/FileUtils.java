@@ -2,14 +2,13 @@ package utils;
 
 import org.apache.commons.io.IOUtils;
 
+import static utils.RandomUtils.RANDOM;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FileUtils {
-
-    public static final Random rnd = new Random();
 
     private FileUtils() {
         throw new IllegalStateException("Utility class");
@@ -35,7 +34,7 @@ public class FileUtils {
              PrintWriter pw = new PrintWriter(bw)) {
 
             for (int i = 0; i < countElement; i++) {
-                pw.println(rnd.nextInt(boundRandomInt));
+                pw.println(RANDOM.nextInt(boundRandomInt));
             }
 
         } catch (IOException e) {
