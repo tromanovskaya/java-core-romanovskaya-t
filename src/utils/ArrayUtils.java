@@ -41,6 +41,16 @@ public class ArrayUtils {
         System.out.println("}");
     }
 
+    public static double findMaxElement(double[] array) {
+        double maxElement = array[0];
+        for (double anArray : array) {
+            if (anArray > maxElement) {
+                maxElement = anArray;
+            }
+        }
+        return maxElement;
+    }
+
     public static int[] sortBubbleArray(int[] array) {
         int[] result = array.clone();
         int temp = 0;

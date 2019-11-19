@@ -4,6 +4,8 @@ import org.apache.commons.math3.util.Precision;
 import utils.ArrayUtils;
 import utils.RandomUtils;
 
+import static utils.ArrayUtils.findMaxElement;
+
 public class Demo {
     private static final int DEFAULT_HOURS_VALUE = 24;
     private static final int DEFAULT_MINUTES_VALUE = 60;
@@ -327,16 +329,6 @@ public class Demo {
         System.out.print("элементы массива поделены на значение максимального = ");
         divisionByMaxElement(array, maxElement);
         ArrayUtils.printArray(array);
-    }
-
-    private static double findMaxElement(double[] array) {
-        double maxElement = array[0];
-        for (double anArray : array) {
-            if (anArray > maxElement) {
-                maxElement = anArray;
-            }
-        }
-        return maxElement;
     }
 
     private static void divisionByMaxElement(double[] array, double maxElement) {
