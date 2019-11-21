@@ -4,7 +4,7 @@ public abstract class Middleware {
     private Middleware next;
 
     /**
-     * Помогает строить цепь из объектов-проверок.
+     * Helps build a chain of test objects.
      */
     public Middleware linkWith(Middleware next) {
         this.next = next;
@@ -12,13 +12,14 @@ public abstract class Middleware {
     }
 
     /**
-     * Подклассы реализуют в этом методе конкретные проверки.
+     * Subclasses implement specific checks in this method.
      */
     public abstract void count(String s);
 
     /**
-     * Запускает проверку в следующем объекте или завершает проверку, если мы в
-     * последнем элементе цепи.
+     * Starts a check in the next object
+     * or ends a check
+     * if we're in the last element of the chain.
      */
     protected void countChain(String s) {
         count(s);
