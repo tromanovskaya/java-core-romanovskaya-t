@@ -26,7 +26,7 @@ public class Berth implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(" Berth " + id + " готов!");
+        System.out.println(" Berth " + id + " ready!");
         queueBerth.add(this);
         System.out.println(" Berth " + id + " in queueBerth!");
     }
