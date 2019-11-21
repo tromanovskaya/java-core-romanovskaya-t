@@ -34,13 +34,13 @@ public class ShipTransfer implements Callable<Cargo> {
         }
         System.out.println("Ship " + id + " started. " + cargo);
 
-        // проходим через очередь
+        // go through the queue
         queueShip.add(this);
 
         System.out.println("Ship " + id + " in queueShip. size = " + queueShip.size());
 
         while (true) {
-            // проверяем первые ли мы в очереди
+            // check if we are first in line
             if (queueShip.peek() == this) {
                 Berth b = queueBerth.peek();
                 assert b != null;
@@ -48,12 +48,12 @@ public class ShipTransfer implements Callable<Cargo> {
 
                     b.BARRIER.getParties();
 
-                    // пришли в первый свободный причал (где есть хотя бы 1 место свободное)
-                    // занимаем место в причале
+                    // came to the first free berth (where there is at least 1 free berth)
+                    // take a berth
                     b.occupiedPlaces.incrementAndGet();
-                    // ждем некст
+                    // waiting for the next
 
-                    // если все места(2) заняты перемещаем причал в конец очереди
+                    // if all places (2) are occupied, move the berth to the end of the queue
                     if (b.occupiedPlaces.get() == 2) {
                         queueBerth.poll();
                         queueBerth.offer(b);
@@ -62,8 +62,8 @@ public class ShipTransfer implements Callable<Cargo> {
                     System.out.println("Ship " + id + " -----> Berth " + b.getId()
                             + " Places = " + b.occupiedPlaces.get());
 
-                    queueShip.poll();// выходим из очереди
-                    // ждем 2-ого для обмена
+                    queueShip.poll();// exit the queue
+                    // waiting for the 2nd to exchange
                     try {
                         b.BARRIER.await();
                     } catch (InterruptedException e) {
@@ -80,17 +80,17 @@ public class ShipTransfer implements Callable<Cargo> {
                         return new Cargo("error3:" + e.getMessage());
                     }
 
-                    // освобождаем место
+                    // free up berth
                     b.occupiedPlaces.decrementAndGet();
 
-                    // запишем на посылке, в каком причале обменялись
+                    // write on the ship in which berth exchanged
                     cargo.setBerth(b.getId());
-                    System.out.println("Дождались и обменялись Ship " + id + " end. " + cargo);
+                    System.out.println("Waited and exchanged Ship " + id + " end. " + cargo);
 
                     break;
                 }
             } else {
-                // пусть другие пока займут процессорное время
+                // let others take up processor time
                 Thread.yield();
             }
         }

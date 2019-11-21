@@ -19,15 +19,13 @@ public class Port {
                 "Порт должен принять все корабли и завершить свою работу.");
 
 
-        int numberOfShips = 100;// кол.-во кораблей
-        int numberOfBerth = 9;// кол.-во причалов
-        // очередь для причалов
+        int numberOfShips = 100;
+        int numberOfBerth = 9;
         ConcurrentLinkedQueue<Berth> queueBerth = new ConcurrentLinkedQueue<>();
-        // очередь для кораблей
         ConcurrentLinkedQueue<ShipTransfer> queueShip = new ConcurrentLinkedQueue<>();
 
         try {
-            System.out.println("---- Запуск работы причалов ----");
+            System.out.println("---- Starting berths ----");
             startBerths(numberOfBerth, queueBerth);
 
             List<Future<Cargo>> futureList = startShips(numberOfShips, queueShip, queueBerth);
@@ -49,7 +47,7 @@ public class Port {
             service.execute(berth);
         }
         service.shutdown();
-        service.awaitTermination(1, TimeUnit.SECONDS); // Даем еще время на завршение потоков
+        service.awaitTermination(1, TimeUnit.SECONDS); // We give more time to complete the threads
     }
 
     private static List<Future<Cargo>> startShips(int numberOfShips, ConcurrentLinkedQueue<ShipTransfer> queueShip, ConcurrentLinkedQueue<Berth> queueBerth) throws InterruptedException {
@@ -74,11 +72,10 @@ public class Port {
 
         service.shutdown();
 
-        // старт одновременно
-        System.out.println("---- Старт всех кораблей одновременно ----");
+        System.out.println("---- Start of all ships simultaneously ----");
         countDownLatch.countDown();
 
-        service.awaitTermination(2, TimeUnit.SECONDS); // Даем еще время на завршение потоков
+        service.awaitTermination(2, TimeUnit.SECONDS); // We give more time to complete the threads
 
         return futureList;
     }
