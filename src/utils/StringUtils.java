@@ -1,5 +1,11 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static utils.ArrayUtils.printArray;
 import static utils.ArrayUtils.sortBubbleArray;
 
 public class StringUtils {
@@ -33,7 +39,6 @@ public class StringUtils {
                 end = i;
             }
             if (end > start) {
-//                System.out.println(stringIn.substring(start + 1, end));
                 stringDel = symbolStart + stringIn.substring(start + 1, end) + symbolEnd;
                 stringOut = stringOut.replace(stringDel, (symbolStart + symbolEnd));
                 start = 0;
@@ -65,8 +70,6 @@ public class StringUtils {
                     start = i;
                 } else {
                     end = i;
-//                    System.out.print("start = " + start);
-//                    System.out.println(" end = " + end);
                     stringDel = symbol + stringIn.substring(start + 1, end) + symbol;
                     stringOut = stringOut.replace(stringDel, (symbol + symbol));
                     start = 0;
@@ -102,66 +105,42 @@ public class StringUtils {
     }
 
     /**
-     * Returns an array of interrogative sentences from the input string.
+     * Returns an list of interrogative sentences from the input string.
      *
      * @param text - input string
-     * @return - array of interrogative sentences
+     * @return - list of interrogative sentences
      */
-    public static String[] getInterrogativeSentences(String text) {
-        String[] result;
-        boolean isLastSymbolQuestion = false;
-        if (text.endsWith("?")) {
-            isLastSymbolQuestion = true;
-        }
-        String[] stringEndsQuestion = text.split("[?]");
-        if (isLastSymbolQuestion) {
-            result = new String[stringEndsQuestion.length];
-        } else {
-            result = new String[stringEndsQuestion.length - 1];
-        }
-        int countRes = 0;
-
-        for (int i = stringEndsQuestion.length - 1; i >= 0; i--) {
-            if ((i == 0 && isLastSymbolQuestion) || i != 0) {
-                //System.out.println(stringEndsQuestion[i] + "?");
-                String[] questions = stringEndsQuestion[i].split("[.!?]");
-                for (int j = questions.length - 1; j >= 0; j--) {
-                    if (j == 0) {
-                        //System.out.println(questions[j] + "?");
-                        result[countRes++] = questions[j].trim();
-                    }
-                }
+    public static List<String> getInterrogativeSentences(String text) {
+        List<String> list  = new ArrayList<>();
+        String tempString =  text.replaceAll("[?]", "<question>?");
+        String[] stringEndsQuestion = tempString.split("[?.!]");
+        for (String s : stringEndsQuestion) {
+            if (s.endsWith("<question>")){
+                list.add(s.replace("<question>","")+"?");
             }
         }
-        return result;
+        return list;
     }
 
     /**
-     * Returns an array of words of the original string with length.
+     * Returns list of unique values of the original string with length.
      *
      * @param s      - input string
      * @param length - length of words
-     * @return - array of words
+     * @return - list of unique values
      */
-    public static String[] getWordsUniqueByLenght(String s, int length) {
-        String[] words = sortBubbleArray(s.toLowerCase().replaceAll("[^а-я ]", "").split(" "));
-        int lenghtNew = 0;
-        String prevValue = "";
+    public static Set<String> getWordsUniqueByLength(String s, int length) {
+        String tempString = s.toLowerCase().replaceAll("[^а-я ]", "").trim();
+        String[] words = sortBubbleArray(tempString.split(" "));
+        System.out.print("array words = ");
+        printArray(words);
+        Set<String> setWordsWithInitSize = new TreeSet<>();
         for (String word : words) {
-            if (word.length() == length && !prevValue.equals(word)) {
-                lenghtNew++;
-                prevValue = word;
+            if (word.length() == length) {
+                setWordsWithInitSize.add(word);
             }
         }
-        String[] result = new String[lenghtNew];
-        int j = 0;
-        for (String word : words) {
-            if (word.length() == length && !prevValue.equals(word)) {
-                result[j++] = word;
-                prevValue = word;
-            }
-        }
-        return result;
+        return setWordsWithInitSize;
     }
 
     /**
@@ -213,7 +192,6 @@ public class StringUtils {
     public static String swapFirstLastWord(String s) {
         String[] sArray = s.split(" ");
         String result = "";
-
         String first = ""; // symbol position in string
         String last = ""; // symbol position in ending
 
@@ -235,32 +213,17 @@ public class StringUtils {
     }
 
     public static int countParagraphs(String s) {
-        int result = 0;
         String[] sArray = s.split("\n");
-
-        for (String s1 : sArray) {
-            result++;
-        }
-        return result;
+        return sArray.length;
     }
 
     public static int countSentences(String s) {
-        int result = 0;
         String[] sArray = s.split("[.!?]");
-
-        for (String s1 : sArray) {
-            result++;
-        }
-        return result;
+        return sArray.length;
     }
 
     public static int countWords(String s) {
-        int result = 0;
         String[] sArray = s.split(" ");
-
-        for (String s1 : sArray) {
-            result++;
-        }
-        return result;
+        return sArray.length;
     }
 }
