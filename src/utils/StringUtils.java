@@ -80,7 +80,7 @@ public class StringUtils {
         return stringOut;
     }
 
-    public static int countVolwelsRU(String s) {
+    public static int countVowelsRU(String s) {
         if (s == null) {
             return 0;
         }
@@ -111,12 +111,12 @@ public class StringUtils {
      * @return - list of interrogative sentences
      */
     public static List<String> getInterrogativeSentences(String text) {
-        List<String> list  = new ArrayList<>();
-        String tempString =  text.replaceAll("[?]", "<question>?");
+        List<String> list = new ArrayList<>();
+        String tempString = text.replaceAll("[?]", "<question>?");
         String[] stringEndsQuestion = tempString.split("[?.!]");
         for (String s : stringEndsQuestion) {
-            if (s.endsWith("<question>")){
-                list.add(s.replace("<question>","")+"?");
+            if (s.endsWith("<question>")) {
+                list.add(s.replace("<question>", "") + "?");
             }
         }
         return list;

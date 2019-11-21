@@ -121,7 +121,7 @@ public class Demo {
         List<String> list = new ArrayList<>();
         String[] sentences = s.split("[.!?]");
         for (int i = 0; i < sentences.length; i++) {
-            int volwelsRU = StringUtils.countVolwelsRU(sentences[i]);
+            int volwelsRU = StringUtils.countVowelsRU(sentences[i]);
             int consonantsRU = StringUtils.countConsonantRU(sentences[i]);
             String moreLetters;
             if (volwelsRU > consonantsRU) {
