@@ -12,6 +12,7 @@ import static java.util.Comparator.comparing;
 
 public class Demo {
     public static void main(String[] args) {
+        System.out.println("lesson3Object\n");
         List<Ship> ships = new ArrayList<>();
         List<Ship> newShips;
         int weightMax = 1500;

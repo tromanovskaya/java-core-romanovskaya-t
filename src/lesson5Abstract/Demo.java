@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Demo {
     public static void main(String[] args) {
+        System.out.println("lesson5Abstract");
         List<Ship> ships = ShipUtils.generateShips(10);
         int i = 1;
 

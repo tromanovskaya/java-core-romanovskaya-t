@@ -10,6 +10,7 @@ import static java.lang.Integer.parseInt;
 
 public class Demo {
     public static void main(String[] args) {
+        System.out.println("lesson4Extends");
         List<Boat> boats = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
@@ -25,7 +26,6 @@ public class Demo {
             boats.add(boat);
             boats.add(boat1);
         }
-
 
         for (Boat b : boats) {
             System.out.println(b.toString());
