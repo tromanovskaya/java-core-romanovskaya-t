@@ -42,9 +42,9 @@ public class Demo {
         double weightMoon;
         double coefficient = 1 - 0.16;
         weightMoon = weight * coefficient;
-        stringBuilder.append("\nмасса = ");
+        stringBuilder.append("\nmass = ");
         stringBuilder.append(weight);
-        stringBuilder.append("\nмасса на Луне = ");
+        stringBuilder.append("\nmass on the moon = ");
         stringBuilder.append(weightMoon);
         System.out.println(stringBuilder.toString());
     }
@@ -55,10 +55,10 @@ public class Demo {
         int bound = 100;
         int scaleRound = 2;
         double[] array = RandomUtils.createRandomArrayDouble(length, bound, scaleRound);
-        System.out.print("исходный массив рандомных чисел = ");
+        System.out.print("Initial array of random numbers = ");
         ArrayUtils.printArray(array);
-        increaseBy10(array); // метод, который увеличивает каждый элемент массива на 10%
-        System.out.print("каждый элемент массива увеличен на 10% = ");
+        increaseBy10(array);
+        System.out.print("Each element of the array is increased by 10% = ");
         ArrayUtils.printArray(array);
     }
 
@@ -83,9 +83,9 @@ public class Demo {
             namber1 = namber1 / 10;
         }
         if (reverse == number) {
-            System.out.println(number + " - палиндромом");
+            System.out.println(number + " - is a Palindrome");
         } else {
-            System.out.println(number + " - НЕ палиндромом");
+            System.out.println(number + " - is not a Palindrome");
         }
     }
 
@@ -178,6 +178,7 @@ public class Demo {
         int firstInteger = 10;
         int secondInteger = 20;
         System.out.println("firstInteger = " + firstInteger + " secondInteger = " + secondInteger);
+        System.out.println("change the values of variables");
         firstInteger = firstInteger + secondInteger;
         secondInteger = firstInteger - secondInteger;
         firstInteger = firstInteger - secondInteger;
@@ -200,7 +201,7 @@ public class Demo {
         int number1 = 50;
         int number2 = 30;
         int number3 = 50;
-        System.out.println("Исходные данные: number1 = " + number1 + ", number2 = " + number2 + ", number3 = " + number3);
+        System.out.println("Initial data: number1 = " + number1 + ", number2 = " + number2 + ", number3 = " + number3);
         determineGreatest(number1, number2, number3);
     }
 
@@ -225,7 +226,7 @@ public class Demo {
         } else if (number3 == maxNamber) {
             result = result + " = number3";
         }
-        System.out.println("Наибольшее число = " + result + " = " + maxNamber);
+        System.out.println("Largest number = " + result + " = " + maxNamber);
     }
 
     private static void runTask12() {
@@ -234,9 +235,9 @@ public class Demo {
                 "имеет значение true и \"ложь\", если переменная имеет значение false.");
         boolean variable1 = true;
         boolean variable2 = false;
-        System.out.println("variable1");
+        System.out.println("variable1 = " + variable1);
         isTrue(variable1);
-        System.out.println("variable2");
+        System.out.println("variable2 = " + variable2);
         isTrue(variable2);
     }
 
@@ -255,7 +256,7 @@ public class Demo {
         String str1 = "Storm ";
         String str2 = "Area 51!";
         String str3;
-        System.out.println("Исходные данные: str1 = " + str1 + ", str2 = " + str2);
+        System.out.println("Initial data: str1 = " + str1 + ", str2 = " + str2);
         str3 = str1 + str2;
         System.out.println(str3);
     }
@@ -267,7 +268,7 @@ public class Demo {
         int bound = 100;
         int value1 = RandomUtils.getRANDOM().nextInt(bound);
         int value2 = RandomUtils.getRANDOM().nextInt(bound);
-        System.out.println("init value1 = " + value1 + " value2 = " + value2);
+        System.out.println("Initial data: value1 = " + value1 + " value2 = " + value2);
         if (value1 > value2) {
             value1 += 3;
         } else {
@@ -278,22 +279,22 @@ public class Demo {
 
     private static void runTask15() {
         System.out.println("\n15. Выведете на экран все числа от 1 до 100 с помощью цикла (можно все три варианта в " +
-                "одной программе):\n" +
-                "for\n" +
-                "while\n" +
-                "do while");
+                "одной программе): for, while, do while");
         int valueStart = 1;
         int valueEnd = 100;
+        System.out.println("Numbers from 1 to 100 with for:");
         for (int i = valueStart; i <= valueEnd; i++) {
             System.out.print(i + " ");
         }
         System.out.println("");
         int i = 1;
+        System.out.println("Numbers from 1 to 100 with while:");
         while (i <= valueEnd) {
             System.out.print(i + " ");
             i++;
         }
         System.out.println("");
+        System.out.println("Numbers from 1 to 100 with do while:");
         i = 1;
         do {
             System.out.print(i + " ");
@@ -323,10 +324,11 @@ public class Demo {
         int bound = 100;
         int scaleRound = 2;
         double[] array = RandomUtils.createRandomArrayDouble(length, bound, scaleRound);
-        System.out.print("исходный массив рандомных чисел = ");
+        System.out.print("Initial array of random numbers = ");
         ArrayUtils.printArray(array);
         double maxElement = findMaxElement(array);
-        System.out.print("элементы массива поделены на значение максимального = ");
+        System.out.println("Maximum element value array = " + maxElement);
+        System.out.print("Array elements are divided by the maximum value = ");
         divisionByMaxElement(array, maxElement);
         ArrayUtils.printArray(array);
     }
@@ -355,7 +357,7 @@ public class Demo {
         int hours = days * DEFAULT_HOURS_VALUE;
         int minutes = hours * DEFAULT_MINUTES_VALUE;
         int seconds = minutes * DEFAULT_SECONDS_VALUE;
-        System.out.println("В " + days + " днях: часов - " + hours + ", минут - " + minutes + ", секунд - " + seconds);
+        System.out.println(days + " days include: hours - " + hours + ", minutes - " + minutes + ", seconds - " + seconds);
     }
 
 }
