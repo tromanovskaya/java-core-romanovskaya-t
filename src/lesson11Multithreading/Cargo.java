@@ -5,13 +5,13 @@ public class Cargo {
     private String name;
     private int count;
     private int berth;
-    private String infо;
+    private String error = "no";
 
     public Cargo() {
     }
 
-    public Cargo(String infо) {
-        this.infо = infо;
+    public Cargo(String error) {
+        this.error = error;
     }
 
     public Cargo(int id, String name, int count) {
@@ -31,6 +31,7 @@ public class Cargo {
                 ", name='" + name + '\'' +
                 ", count=" + count +
                 ", berth=" + berth +
+                ", error='" + error + '\'' +
                 '}';
     }
 }
