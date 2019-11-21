@@ -43,7 +43,7 @@ public class Demo {
         System.out.println(StringUtils.deleteIncludeSymbols(s, symbolAlone, symbolAlone));
         //Task6
         System.out.println("\n6. Найти и напечатать, сколько раз повторяется в тексте каждое слово, которое встречается в нем.");
-        Map<String,Integer> treeMap = countEveryWords(s);
+        Map<String, Integer> treeMap = countEveryWords(s);
         print(treeMap);
         //Task7
         System.out.println("\n7. Найти, каких букв, гласных или согласных, больше в каждом предложении текста");
@@ -101,10 +101,10 @@ public class Demo {
         return result.toString().trim();
     }
 
-    private static Map<String,Integer> countEveryWords(String s) {
+    private static Map<String, Integer> countEveryWords(String s) {
         String[] wordsSorted = sortBubbleArray(s.toLowerCase().replaceAll("[^а-яa-z ]", "").split(" "));
         printArray(wordsSorted);
-        Map<String,Integer> treeMap = new TreeMap<>();
+        Map<String, Integer> treeMap = new TreeMap<>();
         for (String word : wordsSorted) {
             if (!word.equals("")) {
                 if (treeMap.containsKey(word)) {
